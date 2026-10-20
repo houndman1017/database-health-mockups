@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="referrer" content="no-referrer">
+<title>Database Health Mockups</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500;600&display=swap">
+<style>
+/* Database Health V1 mockups. Tokens from Compass cx v4.2.1 (as used by the Compass Reporting prototypes). */
+:root {
+  --sans: "Compass Sans", Helvetica, Arial, sans-serif;
+  --serif: "Compass Serif", "Source Serif 4", Georgia, serif;
+  --ink: #171717; --ink2: #333333; --ink3: #6C6C6C; --ink4: #8D8D8D;
+  --grey90: #4E4E4E; --line: #DADADA; --line-soft: #F4F4F4; --bg: #F4F4F4; --panel: #FFFFFF; --bg-soft: #FAFAFA;
+  --blue: #0064E5; --blue-hover: #0049A8; --blue-soft: #F0F6FF; --blue-100: #D1E5FF;
+  --red: #AE0917; --red-bg: #F8E3E4;
+  --green: #3AAC6F; --green-ink: #1E5839; --green-bg: #DDF3E7;
+  --amber: #B5840C; --amber-ink: #7A5806; --amber-bg: #FFF7DF;
+  --hyg: #1B39EF; --hyg-bg: #EEF1FE; --act: #14A4AD; --act-ink: #037A82; --act-bg: #E6F7F8;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 1px 1px rgba(0,0,0,.03);
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { font-family: var(--sans); color: var(--ink); background: var(--bg); font-size: 14px; line-height: 1.45; -webkit-font-smoothing: antialiased; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { color: var(--blue-hover); }
+button, input { font-family: inherit; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Shell */
+.app { display: flex; min-height: 100vh; }
+.left-nav { flex: 0 0 224px; width: 224px; background: #000; color: #C9C9C9; padding-bottom: 16px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+.nav-head { display: flex; align-items: center; gap: 12px; padding: 20px; }
+.burger { width: 24px; height: 24px; padding: 0; border: 0; background: transparent; display: inline-flex; flex-direction: column; gap: 4px; align-items: center; justify-content: center; cursor: pointer; }
+.burger span { display: block; width: 16px; height: 1px; background: #fff; }
+.wordmark { color: #fff; font-size: 17px; font-weight: 700; letter-spacing: .22em; }
+.nl { display: flex; align-items: center; gap: 12px; padding: 4px 20px; min-height: 32px; color: #C9C9C9; font-size: 15px; line-height: 24px; }
+.nl:hover { background: rgba(255,255,255,.08); color: #fff; }
+.nl svg { flex-shrink: 0; }
+.nl.on { color: #fff; font-weight: 500; }
+.nc { display: block; padding: 4px 20px 4px 54px; color: #C9C9C9; font-size: 14px; line-height: 24px; }
+.nc:hover { background: rgba(255,255,255,.08); color: #fff; }
+.nc.on { color: #fff; font-weight: 500; background: rgba(255,255,255,.12); }
+.nav-div { height: 1px; background: var(--grey90); margin: 8px 22px; }
+.mobile-bar { display: none; background: #000; padding: 14px 16px; }
+main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+.topbar { padding: 12px 32px; background: var(--panel); border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.crumbs { font-size: 13px; color: var(--ink3); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.crumbs b { color: var(--ink); font-weight: 600; }
+.tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 19px; padding: 2px; background: #fff; }
+.seg a, .seg span { padding: 5px 14px; border-radius: 17px; color: var(--ink); font-size: 13px; font-weight: 500; }
+.seg .on { background: #000; color: #fff; }
+.fresh { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 6px 0 12px; border: 1px solid var(--line); border-radius: 19px; font-size: 13px; color: var(--ink3); }
+.fresh b { color: var(--ink); font-weight: 500; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.icon-btn { width: 28px; height: 28px; border: 0; border-radius: 50%; background: transparent; color: var(--blue); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.icon-btn:hover { background: var(--blue-soft); }
+.icon-btn.spin svg { animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.page-head { padding: 24px 32px 20px; background: var(--panel); border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.page-head.tabs-below { padding-bottom: 0; display: block; }
+h1.title { margin: 6px 0 0; font-family: var(--serif); font-size: 28px; font-weight: 600; letter-spacing: -.01em; }
+.page-sub { margin-top: 4px; font-size: 13px; color: var(--ink3); max-width: 680px; }
+.page-sub b { color: var(--ink); }
+.back { font-size: 13px; }
+.body { padding: 24px 32px 96px; display: flex; flex-direction: column; gap: 16px; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border: 1px solid var(--blue); border-radius: 2px; background: var(--blue); color: #fff; font-size: 14px; font-weight: 500; line-height: 1.3; white-space: nowrap; cursor: pointer; }
+.btn:hover { background: var(--blue-hover); border-color: var(--blue-hover); color: #fff; }
+.btn-ghost { display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border: 1px solid var(--line); border-radius: 2px; background: #fff; color: var(--ink); font-size: 14px; font-weight: 500; line-height: 1.3; white-space: nowrap; cursor: pointer; }
+.btn-ghost:hover { background: var(--line-soft); color: var(--blue); }
+.btn-red { display: inline-flex; align-items: center; padding: 6px 16px; border: 1px solid var(--red); border-radius: 2px; background: var(--red); color: #fff; font-size: 14px; font-weight: 500; line-height: 1.3; white-space: nowrap; cursor: pointer; }
+.btn-red:hover { background: #8A0712; }
+.btn-sm { display: inline-flex; align-items: center; padding: 3px 10px; border: 1px solid var(--blue); border-radius: 2px; background: #fff; color: var(--blue); font-size: 12px; font-weight: 600; cursor: pointer; }
+.btn-sm:hover { background: var(--blue-soft); }
+.btn-sm.muted { border-color: var(--line); color: var(--grey90); }
+.btn-sm.done { background: var(--green-bg); border-color: var(--green-bg); color: var(--green-ink); cursor: default; }
+.pillf { height: 32px; padding: 0 12px; border: 1px solid var(--line); border-radius: 19px; background: #fff; color: var(--ink); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; white-space: nowrap; }
+.pillf:hover { background: var(--line-soft); }
+.pillf .l { color: var(--ink3); font-weight: 400; }
+.pillf .c { color: var(--ink3); }
+.pillf.on { background: #000; border-color: #000; color: #fff; }
+.pillf.on .c { color: #ccc; }
+.pillf.blue { background: var(--blue-soft); border-color: var(--blue); color: var(--blue); }
+.pillf:disabled { color: var(--ink4); cursor: default; }
+.chip { display: block; width: 100%; padding: 7px 12px; border: 1px solid var(--line); border-radius: 19px; background: #fff; color: var(--ink); font-size: 13px; text-align: left; cursor: pointer; }
+.chip:hover { background: var(--line-soft); }
+
+/* Cards */
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 24px; box-shadow: var(--shadow); min-width: 0; }
+.card.flush { padding: 0; overflow: hidden; }
+.card-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+h2.ct { margin: 0; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.cs { font-size: 13px; color: var(--ink3); margin-top: 2px; }
+.wrap { display: flex; flex-wrap: wrap; gap: 16px; }
+.f2 { flex: 2 1 560px; }
+.f1 { flex: 1 1 320px; }
+.fh { flex: 1 1 420px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.kpi { padding: 20px 24px; }
+.kpi-label { font-size: 12px; font-weight: 500; color: var(--ink3); text-transform: uppercase; letter-spacing: .04em; }
+.kpi-val { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin: 4px 0 6px; }
+.kpi-val .n { font-family: var(--serif); font-size: 32px; font-weight: 600; }
+.kpi-val .d { color: var(--ink3); }
+.up { color: var(--green-ink); font-weight: 600; }
+.down { color: var(--red); font-weight: 600; }
+.flat { color: var(--ink3); font-weight: 600; }
+.vs { color: var(--ink3); font-weight: 400; }
+
+.pill { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+.pill.sm { font-size: 10px; padding: 1px 6px; border-radius: 8px; }
+.t-red { background: var(--red-bg); color: var(--red); }
+.t-amber { background: var(--amber-bg); color: var(--amber-ink); }
+.t-green { background: var(--green-bg); color: var(--green-ink); }
+.t-grey { background: var(--line-soft); color: var(--ink3); }
+.t-hyg { background: var(--hyg-bg); color: var(--hyg); }
+.t-act { background: var(--act-bg); color: var(--act-ink); }
+.t-blue { background: var(--blue-soft); color: var(--blue-hover); }
+
+.bar { height: 8px; border-radius: 4px; background: var(--line-soft); overflow: hidden; }
+.bar > span { display: block; height: 100%; border-radius: inherit; }
+.bar.thin { height: 4px; }
+.bar.mid { height: 6px; }
+
+/* Tables */
+.tscroll { overflow-x: auto; }
+table.t { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.t th { text-align: left; font-size: 11px; font-weight: 500; color: var(--ink3); text-transform: uppercase; letter-spacing: .04em; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+table.t th.r, table.t td.r { text-align: right; }
+table.t th.sorted { color: var(--blue); }
+table.t td { padding: 12px 10px; border-bottom: 1px solid var(--line-soft); vertical-align: middle; font-variant-numeric: tabular-nums; }
+table.t tbody tr:hover { background: var(--bg-soft); }
+table.t tr.sel, table.t tr.sel:hover { background: var(--blue-soft); }
+table.t tr.sel td { border-bottom-color: #fff; }
+table.t .first { padding-left: 24px; }
+table.t .last { padding-right: 24px; }
+table.t .cb { width: 44px; padding-left: 16px; }
+input[type=checkbox], input[type=radio] { width: 16px; height: 16px; accent-color: var(--blue); cursor: pointer; }
+.nm { font-weight: 500; font-size: 14px; }
+.nm-sub { font-size: 12px; color: var(--ink3); }
+.tfoot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; padding: 12px 16px; font-size: 12px; color: var(--ink3); }
+
+.bulkbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: var(--ink); color: #fff; padding: 10px 16px; }
+.bulkbar a { color: #8FC0FF; font-size: 13px; }
+.bulkbar .count { font-size: 13px; font-weight: 600; }
+.bulkbar .sp { flex: 1; }
+.bar-btn { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border: 1px solid var(--grey90); border-radius: 2px; background: transparent; color: #fff; font-size: 13px; font-weight: 500; cursor: pointer; }
+.bar-btn:hover { background: #333; }
+.bar-btn.danger { border-color: #F8A5AC; color: #FFD6DA; }
+.bar-btn.open { background: #fff; color: var(--ink); border-color: #fff; }
+
+.sug { display: inline-block; border: 1px dashed var(--blue); background: var(--blue-soft); border-radius: 4px; padding: 3px 10px; color: var(--blue-hover); font-weight: 500; }
+.sug-src { font-size: 11px; color: var(--grey90); }
+.notice { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; border-radius: 8px; padding: 14px 18px; font-size: 13px; }
+.notice.blue { background: var(--blue-soft); border: 1px solid var(--blue-100); }
+.notice.plain { background: #fff; border: 1px solid var(--line); align-items: flex-start; flex-wrap: nowrap; padding: 12px 16px; }
+.tabs { display: flex; gap: 24px; margin-top: 20px; }
+.tab { border: 0; background: transparent; padding: 0 0 12px; border-bottom: 2px solid transparent; font-size: 14px; font-weight: 500; color: var(--ink3); cursor: pointer; }
+.tab[aria-selected=true] { border-bottom-color: var(--blue); color: var(--ink); font-weight: 600; }
+.tab .c { font-weight: 500; color: var(--ink3); }
+
+/* Overview specifics */
+.score { display: flex; flex-wrap: wrap; align-items: center; gap: 32px; }
+.ring { position: relative; width: 168px; height: 168px; flex-shrink: 0; }
+.ring-c { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.ring-c .n { font-family: var(--serif); font-size: 52px; font-weight: 600; line-height: 1; letter-spacing: -.02em; }
+.ring-c .o { font-size: 12px; color: var(--ink3); margin-top: 2px; }
+.subs { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.sub-row { position: relative; }
+.sub-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.sub-top .lbl { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.sub-top .lbl b { font-size: 14px; }
+.sub-top .lbl span { font-size: 12px; color: var(--ink3); }
+.sub-top .v b { font-size: 18px; }
+.sub-top .v span { color: var(--ink3); }
+.info { width: 22px; height: 22px; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--ink3); font-size: 11px; font-weight: 700; cursor: pointer; padding: 0; }
+.info:hover, .info:focus-visible, .info[aria-expanded=true] { border-color: var(--blue); background: var(--blue-soft); color: var(--blue); }
+.tip { position: absolute; z-index: 5; left: 0; top: 30px; width: 290px; max-width: 100%; background: var(--ink); color: #fff; border-radius: 8px; padding: 14px 16px; box-shadow: 0 4px 14px rgba(0,0,0,.18); font-size: 12px; line-height: 1.5; }
+.tip .h { font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+.tip .d { color: #D9D9D9; margin-bottom: 8px; }
+.tip .g { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; font-variant-numeric: tabular-nums; }
+.legend { border-top: 1px solid var(--line); margin-top: 20px; padding-top: 14px; display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: var(--ink3); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.ai-say { background: var(--blue-soft); border-radius: 8px; padding: 12px 14px; font-size: 13px; }
+.ai-say .k { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--blue-hover); margin-bottom: 4px; }
+.field { width: 100%; min-width: 0; height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 4px; font-size: 13px; }
+.field:focus { outline: 2px solid var(--blue); outline-offset: -1px; }
+.help-row { padding: 10px 0; border-bottom: 1px solid var(--line-soft); }
+.help-row:last-child { border-bottom: 0; }
+.help-top { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; margin-bottom: 6px; }
+.tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.tier { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+.tier.hi { border-color: var(--blue); background: var(--blue-soft); }
+.tier .n { font-family: var(--serif); font-size: 24px; font-weight: 600; margin: 4px 0 2px; }
+.tier .s { font-size: 12px; color: var(--ink3); }
+.tier.hi .s { color: var(--blue-hover); font-weight: 500; }
+.log-row { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--line-soft); }
+.log-row:last-child { border-bottom: 0; }
+.log-ic { width: 28px; height: 28px; border-radius: 4px; background: var(--blue-soft); color: var(--blue); display: grid; place-items: center; }
+.av { width: 28px; height: 28px; border-radius: 50%; background: var(--line-soft); display: inline-grid; place-items: center; font-size: 11px; font-weight: 600; flex-shrink: 0; }
+
+/* Popover */
+.pop { position: absolute; z-index: 6; right: 16px; top: 54px; width: 340px; max-width: calc(100% - 32px); background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.14); padding: 12px; }
+.opt { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 8px 12px; border: 0; border-radius: 4px; background: transparent; font-size: 13px; color: var(--ink); text-align: left; cursor: pointer; }
+.opt:hover { background: var(--line-soft); }
+.opt[aria-pressed=true] { background: var(--blue-soft); }
+.opt .m { font-size: 12px; color: var(--ink3); }
+.opt svg { visibility: hidden; flex-shrink: 0; }
+.opt[aria-pressed=true] svg { visibility: visible; }
+
+fieldset.conf { border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; margin: 0 0 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+fieldset.conf legend { padding: 0 6px; font-size: 13px; font-weight: 600; }
+fieldset.conf label { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; flex-wrap: wrap; }
+
+/* States */
+.states { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px 24px; }
+.state { display: flex; flex-direction: column; gap: 10px; }
+.state > .card, .state > .scrim { flex: 1; min-height: 400px; }
+.scrim { background: rgba(23,23,23,.55); border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.dialog { width: 100%; max-width: 380px; background: #fff; border-radius: 8px; box-shadow: 0 12px 32px rgba(0,0,0,.24); padding: 24px; }
+.dialog h2 { margin: 0 0 8px; font-size: 18px; font-weight: 600; }
+.dialog p { margin: 0 0 12px; font-size: 13px; color: var(--ink2); }
+.dialog .acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
+.toast-dark { background: var(--ink); color: #fff; border-radius: 8px; padding: 14px 16px; box-shadow: 0 4px 16px rgba(0,0,0,.25); }
+.toast { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; box-shadow: 0 4px 16px rgba(0,0,0,.12); display: flex; gap: 12px; align-items: flex-start; }
+
+/* Screen switcher (review tool, not part of the product) */
+.switcher { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 1000; background: rgba(23,23,23,.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 999px; padding: 5px; display: flex; align-items: center; gap: 2px; box-shadow: 0 4px 16px rgba(0,0,0,.25); max-width: calc(100vw - 24px); overflow-x: auto; }
+.switcher .lab { padding: 0 8px 0 10px; color: rgba(255,255,255,.6); letter-spacing: .06em; text-transform: uppercase; font-size: 10px; font-weight: 600; white-space: nowrap; }
+.switcher a { height: 30px; padding: 0 12px; display: inline-flex; align-items: center; font-size: 12px; font-weight: 500; color: rgba(255,255,255,.75); border-radius: 999px; white-space: nowrap; }
+.switcher a:hover { color: #fff; background: rgba(255,255,255,.1); }
+.switcher a[aria-current=page] { background: #fff; color: #000; }
+
+.screen[hidden] { display: none; }
+
+@media (max-width: 900px) {
+  .left-nav { display: none; }
+  .mobile-bar { display: block; }
+  .app { flex-direction: column; }
+  .topbar, .page-head, .body { padding-left: 16px; padding-right: 16px; }
+  .tiers { grid-template-columns: 1fr; }
+  .tip { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="mobile-bar"><span class="wordmark">COMPASS</span></div>
+<div class="app">
+
+<nav class="left-nav" aria-label="Primary">
+  <div class="nav-head">
+    <button type="button" class="burger" aria-label="Collapse menu"><span></span><span></span><span></span></button>
+    <span class="wordmark">COMPASS</span>
+  </div>
+  <a class="nl" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg>AI Assistant</a>
+  <div class="nav-div"></div>
+  <a class="nl" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z"/></svg>Home</a>
+  <a class="nl" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M16 16l5 5"/></svg>Search</a>
+  <a class="nl" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v16h16"/><path d="M7 15l4-4 3 3 5-6"/></svg>Performance</a>
+  <a class="nl on" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Contacts</a>
+  <a class="nc" href="#">All Contacts</a>
+  <a class="nc" href="#">Leads</a>
+  <a class="nc" href="#">Groups</a>
+  <a class="nc" href="#">Archived</a>
+  <a class="nc" href="#">Duplicates</a>
+  <a class="nc on" href="#overview" aria-current="page">Database Health</a>
+  <a class="nc" href="#">Pending Review</a>
+  <a class="nl" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg>Messages</a>
+  <a class="nl" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 12l3 3 5-6"/></svg>Tasks</a>
+  <a class="nl" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4"/><path d="M6 4h12l-2.5 4.5L18 13H6"/></svg>Action Plans</a>
+  <a class="nl" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 5h16M4 10h10M4 15h16M4 20h10"/></svg>Reporting</a>
+  <a class="nl" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4h3l6 5V5L7 10z"/><path d="M16 9a4 4 0 010 6"/></svg>Marketing</a>
+  <a class="nl" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>Settings</a>
+</nav>
+
+<main>
+
+<!-- ================= 1 · OVERVIEW (AGENT) ================= -->
+<section class="screen" id="s-overview" data-screen="overview" aria-label="Database Health overview">
+  <div class="topbar">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Contacts</a><span aria-hidden="true">/</span><b>Database Health</b></nav>
+    <div class="tools">
+      <div class="seg" role="group" aria-label="View"><span class="on" aria-current="true">Agent</span><a href="#team">Team Lead</a></div>
+      <span class="fresh"><span class="dot" style="background: var(--green)"></span><span class="fresh-txt">Calculated <b>2 hours ago</b></span>
+        <button type="button" class="icon-btn js-refresh" aria-label="Recalculate score"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 11-2.3-5.7"/><path d="M20 4v4h-4"/></svg></button></span>
+    </div>
+  </div>
+  <header class="page-head">
+    <div>
+      <h1 class="title" style="margin-top:0">Database Health</h1>
+      <div class="page-sub">8,412 contacts · Your score is recalculated every day in the background</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="btn-ghost" href="#">How the score works</a>
+      <a class="btn" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>Ask AI Assistant</a>
+    </div>
+  </header>
+
+  <div class="body">
+    <div class="wrap">
+      <section class="card f2" aria-labelledby="score-h">
+        <h2 class="ct" id="score-h" style="margin-bottom:16px">Your health score</h2>
+        <div class="score">
+          <div class="ring">
+            <svg width="168" height="168" viewBox="0 0 168 168" role="img" aria-label="Health score 64 out of 100"><circle cx="84" cy="84" r="72" fill="none" stroke="#E8E8E8" stroke-width="14"/><circle cx="84" cy="84" r="72" fill="none" stroke="#B5840C" stroke-width="14" stroke-dasharray="289.5 452.4" transform="rotate(-90 84 84)"/></svg>
+            <div class="ring-c"><div class="n">64</div><div class="o">out of 100</div></div>
+          </div>
+          <div class="subs">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+              <span class="pill t-amber">Needs attention</span>
+              <span style="font-size:13px" class="up">▲ 6 <span class="vs">vs 30 days ago</span></span>
+              <svg width="200" height="40" viewBox="0 0 200 40" role="img" aria-label="Daily score for the last 30 days, rising from 58 to 64" style="margin-left:auto;max-width:100%"><polyline points="0,31 7,31 14,31 21,26 28,26 34,26 41,26 48,22 55,26 62,22 69,22 76,22 83,18 90,18 97,18 103,18 110,18 117,13 124,13 131,13 138,13 145,13 152,9 159,9 166,9 172,9 179,9 186,4 193,4 200,4" fill="none" stroke="#0064E5" stroke-width="2" stroke-linejoin="round"/><circle cx="197" cy="4" r="3" fill="#0064E5"/></svg>
+            </div>
+
+            <div class="sub-row">
+              <div class="sub-top">
+                <div class="lbl"><b>Hygiene</b><span>Is your data clean?</span>
+                  <button type="button" class="info js-tip" aria-expanded="false" aria-controls="tip-h" aria-label="How Hygiene is calculated">i</button></div>
+                <div class="v num"><b>36</b><span> / 50</span></div>
+              </div>
+              <div class="bar"><span style="width:72%;background:var(--hyg)"></span></div>
+              <div class="tip" id="tip-h" role="tooltip" hidden>
+                <div class="h">Hygiene · 50 points</div>
+                <div class="d">Whether your contacts are unique, reachable and complete.</div>
+                <div class="g"><span>Free of high-confidence duplicates</span><span>12</span><span>Has a valid email or phone</span><span>15</span><span>Not bounced or undeliverable</span><span>13</span><span>Has first and last name</span><span>10</span></div>
+              </div>
+            </div>
+
+            <div class="sub-row">
+              <div class="sub-top">
+                <div class="lbl"><b>Activity</b><span>Is your data being worked?</span>
+                  <button type="button" class="info js-tip" aria-expanded="false" aria-controls="tip-a" aria-label="How Activity is calculated">i</button></div>
+                <div class="v num"><b>28</b><span> / 50</span></div>
+              </div>
+              <div class="bar"><span style="width:56%;background:var(--act)"></span></div>
+              <div class="tip" id="tip-a" role="tooltip" hidden>
+                <div class="h">Activity · 50 points</div>
+                <div class="d">Whether your most valuable contacts are getting follow-up.</div>
+                <div class="g"><span>Priority contacts on an active plan or campaign</span><span>30</span><span>Past clients touched in the last 12 months</span><span>20</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="legend">
+          <span><i class="sw" style="background:var(--red)"></i>0–49 At risk</span>
+          <span><i class="sw" style="background:var(--amber)"></i>50–79 Needs attention</span>
+          <span><i class="sw" style="background:var(--green)"></i>80–100 Healthy</span>
+          <span style="margin-left:auto">Last calculated Oct 20, 7:02 AM</span>
+        </div>
+      </section>
+
+      <section class="card f1" aria-labelledby="ai-h" style="display:flex;flex-direction:column;gap:14px">
+        <h2 class="ct" id="ai-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0064E5" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>Ask about your database</h2>
+        <div class="ai-say"><div class="k">AI Assistant</div>Your fastest path to 80+ is Activity. Enrolling your 1,284 priority contacts in a plan and reaching out to 212 past clients would recover up to 22 points.</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <button type="button" class="chip">Which past clients haven't heard from me this year?</button>
+          <button type="button" class="chip">Draft a check-in campaign for 212 past clients</button>
+          <button type="button" class="chip">Why did my Hygiene score change?</button>
+        </div>
+        <div style="margin-top:auto">
+          <label for="ask" style="display:block;font-size:12px;color:var(--ink3);margin-bottom:4px">Ask a question</label>
+          <div style="display:flex;gap:8px"><input id="ask" class="field" type="text" placeholder="e.g. Who are my unreachable past clients?"><button type="button" class="btn">Ask</button></div>
+        </div>
+      </section>
+    </div>
+
+    <div class="wrap">
+      <section class="card f2" aria-labelledby="hurt-h">
+        <div class="card-head">
+          <div><h2 class="ct" id="hurt-h"><span class="dot" style="background:var(--red)"></span>What's hurting</h2><div class="cs">Ranked by the points you'd recover by fixing every affected contact</div></div>
+          <span style="font-size:12px;color:var(--ink3)">Up to <b style="color:var(--ink)">36 pts</b> available</span>
+        </div>
+        <div class="tscroll">
+          <table class="t" style="min-width:560px">
+            <thead><tr><th scope="col">Issue</th><th scope="col" class="r">Contacts</th><th scope="col" style="width:200px">Points recoverable</th><th scope="col"><span class="sr">Action</span></th></tr></thead>
+            <tbody id="hurting"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="card f1" aria-labelledby="help-h">
+        <h2 class="ct" id="help-h"><span class="dot" style="background:var(--green)"></span>What's helping</h2>
+        <div class="cs" style="margin-bottom:14px">Points each component contributes today</div>
+        <div id="helping"></div>
+      </section>
+    </div>
+
+    <div class="wrap">
+      <section class="card fh" id="dups" aria-labelledby="dup-h">
+        <div class="card-head">
+          <div><h2 class="ct" id="dup-h">Duplicates</h2><div class="cs">Open suggestions from the Duplicates engine</div></div>
+          <a href="#" style="font-size:13px">Review in Duplicates →</a>
+        </div>
+        <div class="tiers">
+          <div class="tier hi"><div class="kpi-label">High</div><div class="n">418</div><div class="s">Counts against score</div></div>
+          <div class="tier"><div class="kpi-label">Medium</div><div class="n">236</div><div class="s">Not scored</div></div>
+          <div class="tier"><div class="kpi-label">Low</div><div class="n">91</div><div class="s">Not scored</div></div>
+        </div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:14px">Only high-confidence suggestions affect your score. Dismissed suggestions never count. Private contacts are never matched across owners.</div>
+      </section>
+      <section class="card fh" aria-labelledby="log-h">
+        <div class="card-head" style="margin-bottom:8px">
+          <div><h2 class="ct" id="log-h">Recent fixes</h2><div class="cs">Last 30 days</div></div>
+          <span class="up" style="font-size:13px">+6 pts</span>
+        </div>
+        <div id="fixes"></div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2 · TEAM LEAD ================= -->
+<section class="screen" id="s-team" data-screen="team" aria-label="Team Database Health" hidden>
+  <div class="topbar">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Contacts</a><span aria-hidden="true">/</span><b>Database Health</b></nav>
+    <div class="tools">
+      <div class="seg" role="group" aria-label="View"><a href="#overview">Agent</a><span class="on" aria-current="true">Team Lead</span></div>
+      <button type="button" class="pillf blue"><span class="l">Agent</span>All agents <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <span class="fresh"><span class="dot" style="background: var(--green)"></span><span class="fresh-txt">Calculated <b>2 hours ago</b></span>
+        <button type="button" class="icon-btn js-refresh" aria-label="Recalculate team scores"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 11-2.3-5.7"/><path d="M20 4v4h-4"/></svg></button></span>
+    </div>
+  </div>
+  <header class="page-head">
+    <div>
+      <h1 class="title" style="margin-top:0">Team Database Health</h1>
+      <div class="page-sub">12 agents · 81,972 contacts you can access under team permissions</div>
+    </div>
+    <a class="btn-ghost" href="#">How the score works</a>
+  </header>
+  <div class="body">
+    <div class="kpis">
+      <div class="card kpi"><div class="kpi-label">Team average</div><div class="kpi-val"><span class="n">61</span><span class="d">/ 100</span><span class="pill t-amber">Needs attention</span></div><div style="font-size:12px" class="up">▲ 3 <span class="vs">vs 30 days ago</span></div></div>
+      <div class="card kpi"><div class="kpi-label">Hygiene average</div><div class="kpi-val"><span class="n">33</span><span class="d">/ 50</span></div><div class="bar mid"><span style="width:66%;background:var(--hyg)"></span></div></div>
+      <div class="card kpi"><div class="kpi-label">Activity average</div><div class="kpi-val"><span class="n">28</span><span class="d">/ 50</span></div><div class="bar mid"><span style="width:56%;background:var(--act)"></span></div></div>
+      <div class="card kpi"><div class="kpi-label">Agents below 50</div><div class="kpi-val"><span class="n" style="color:var(--red)">3</span><span class="d">of 12 agents</span></div><div style="font-size:12px;color:var(--ink3)">1 agent's database is too small to score</div></div>
+    </div>
+    <section class="card" aria-labelledby="agents-h">
+      <div class="card-head">
+        <div><h2 class="ct" id="agents-h">Agents</h2><div class="cs">Sorted by score, lowest first. Select an agent to see their score and issues.</div></div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink3);background:var(--line-soft);border-radius:4px;padding:6px 10px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Fixes on an agent's contacts follow existing edit permissions</div>
+      </div>
+      <div class="tscroll">
+        <table class="t" style="min-width:860px">
+          <thead><tr><th scope="col">Agent</th><th scope="col" class="r">Contacts</th><th scope="col" class="sorted">Score ↑</th><th scope="col" class="r">Hygiene</th><th scope="col" class="r">Activity</th><th scope="col" class="r">30-day trend</th><th scope="col">Top issue</th><th scope="col"><span class="sr">Action</span></th></tr></thead>
+          <tbody id="agents"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- ================= 3 · UNREACHABLE ================= -->
+<section class="screen" id="s-unreachable" data-screen="unreachable" aria-label="Unreachable contacts" hidden>
+  <div class="topbar">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Contacts</a><span aria-hidden="true">/</span><a href="#overview">Database Health</a><span aria-hidden="true">/</span><b>Unreachable contacts</b></nav>
+    <span style="font-size:12px;color:var(--ink3)">Score last calculated <b style="color:var(--ink);font-weight:500">2 hours ago</b></span>
+  </div>
+  <header class="page-head tabs-below">
+    <a class="back" href="#overview">← Back to Database Health</a>
+    <h1 class="title">Unreachable contacts</h1>
+    <div class="page-sub">Fixing every contact here recovers up to <b>+9 pts</b> of Hygiene</div>
+    <div class="tabs" role="tablist" aria-label="Unreachable type">
+      <button type="button" class="tab" role="tab" aria-selected="true" data-tab="none">No email or phone <span class="c">2,140</span></button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-tab="bounced">Bounced or undeliverable <span class="c">356</span></button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="notice blue" data-pane="none">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0064E5" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>
+      <div style="flex:1 1 320px"><b>312 of these contacts have a suggested email or phone</b> found in your synced email, transactions, listings and call history. Nothing is saved until you accept it.</div>
+      <a class="btn" href="#suggestions">Review 312 suggestions</a>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <label for="q" class="sr">Search contacts</label>
+      <input id="q" class="field" type="search" placeholder="Search name or tag" style="width:240px;height:32px;border-radius:19px">
+      <button type="button" class="pillf blue" data-pane="none">Has suggestion</button>
+      <button type="button" class="pillf"><span class="l">Type</span>All ▾</button>
+      <button type="button" class="pillf"><span class="l">Created</span>Any time ▾</button>
+      <button type="button" class="pillf"><span class="l">Tag</span>Any ▾</button>
+    </div>
+    <section class="card flush" aria-label="Contacts list">
+      <div class="bulkbar">
+        <span class="count" id="u-count">4 selected</span><a href="#" onclick="return false">Select all <span id="u-total">2,140</span></a>
+        <span class="sp"></span>
+        <button type="button" class="bar-btn" data-pane="none" id="u-accept">Accept 3 suggestions</button>
+        <button type="button" class="bar-btn">Add tag</button>
+        <button type="button" class="bar-btn">Remove from all action plans</button>
+        <a class="bar-btn danger" href="#states" style="color:#FFD6DA">Archive</a>
+      </div>
+      <div class="tscroll">
+        <table class="t" style="min-width:880px">
+          <thead id="u-head"></thead>
+          <tbody id="unreach"></tbody>
+        </table>
+      </div>
+      <div class="tfoot"><span id="u-foot">Showing 1–10 of 2,140</span><span style="display:flex;gap:8px"><button type="button" class="pillf" disabled>Previous</button><button type="button" class="pillf">Next</button></span></div>
+    </section>
+  </div>
+</section>
+
+<!-- ================= 4 · SUGGESTIONS ================= -->
+<section class="screen" id="s-suggestions" data-screen="suggestions" aria-label="Suggested contact details" hidden>
+  <div class="topbar">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Contacts</a><span aria-hidden="true">/</span><a href="#overview">Database Health</a><span aria-hidden="true">/</span><a href="#unreachable">Unreachable contacts</a><span aria-hidden="true">/</span><b>Suggestions</b></nav>
+  </div>
+  <header class="page-head">
+    <div>
+      <a class="back" href="#unreachable">← Back to unreachable contacts</a>
+      <h1 class="title">Suggested contact details</h1>
+      <div class="page-sub">Found in data Compass already has. Accepting fills an empty field only, and every accepted value is logged in the contact's activity history with its source.</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" class="btn-ghost">Reject all</button>
+      <a class="btn" href="#states">Accept all 298 <span style="font-weight:400;opacity:.85">· empty fields only</span></a>
+    </div>
+  </header>
+  <div class="body">
+    <div role="group" aria-label="Filter by source" style="display:flex;flex-wrap:wrap;gap:8px" id="src-filters">
+      <button type="button" class="pillf on" aria-pressed="true" data-src="all">All sources <span class="c">312</span></button>
+      <button type="button" class="pillf" aria-pressed="false" data-src="Signature">Email signatures <span class="c">184</span></button>
+      <button type="button" class="pillf" aria-pressed="false" data-src="Transaction">Compass transactions <span class="c">61</span></button>
+      <button type="button" class="pillf" aria-pressed="false" data-src="Calls">Calls &amp; texts <span class="c">38</span></button>
+      <button type="button" class="pillf" aria-pressed="false" data-src="Listing">Compass listings <span class="c">22</span></button>
+      <button type="button" class="pillf" aria-pressed="false" data-src="Lead form">Lead forms <span class="c">7</span></button>
+    </div>
+    <section class="card" aria-labelledby="conf-h" style="padding:20px 24px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:12px">
+        <h2 class="ct" id="conf-h">Needs your choice</h2><span class="pill t-amber">14 conflicts</span>
+        <span style="font-size:13px;color:var(--ink3)">These fields already have a value, so they're never included in Accept all.</span>
+      </div>
+      <div id="conflicts"></div>
+    </section>
+    <section class="card flush" aria-labelledby="sug-h">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:16px 24px 8px">
+        <h2 class="ct" id="sug-h">Ready to accept <span style="font-weight:500;color:var(--ink3)">298</span></h2>
+        <span style="display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--ink3)"><span style="width:28px;height:14px;border:1px dashed var(--blue);background:var(--blue-soft);border-radius:3px"></span>Suggested value, not saved yet</span>
+      </div>
+      <div class="tscroll">
+        <table class="t" style="min-width:900px">
+          <thead><tr><th scope="col" class="first">Contact</th><th scope="col">Field</th><th scope="col">Suggested value</th><th scope="col">Source</th><th scope="col" class="r last">Actions</th></tr></thead>
+          <tbody id="sugs"></tbody>
+        </table>
+      </div>
+      <div class="tfoot" style="padding-left:24px">Rejecting hides that suggestion for that contact and field permanently. Showing 1–8 of 298.</div>
+    </section>
+  </div>
+</section>
+
+<!-- ================= 5 · PRIORITY CONTACTS WITH NO PLAN ================= -->
+<section class="screen" id="s-noplan" data-screen="noplan" aria-label="Priority contacts with no plan" hidden>
+  <div class="topbar">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Contacts</a><span aria-hidden="true">/</span><a href="#overview">Database Health</a><span aria-hidden="true">/</span><b>Priority contacts with no plan</b></nav>
+    <span style="font-size:12px;color:var(--ink3)">Score last calculated <b style="color:var(--ink);font-weight:500">2 hours ago</b></span>
+  </div>
+  <header class="page-head" style="display:block">
+    <a class="back" href="#overview">← Back to Database Health</a>
+    <h1 class="title">Priority contacts with no plan</h1>
+    <div class="page-sub">1,284 contacts aren't on an active action plan or campaign · Enrolling all recovers up to <b>+14 pts</b> of Activity</div>
+  </header>
+  <div class="body">
+    <div class="wrap" style="gap:12px">
+      <div class="notice plain fh"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0064E5" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span><b>86 contacts are hidden</b> because an automated assignment rule will enroll them in the next 24 hours.</span></div>
+      <div class="notice plain fh"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7A5806" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:1px"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg><span><b>Do Not Contact and unsubscribed contacts</b> are skipped for email and text steps. [Rules pending Legal and Compliance]</span></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <div role="group" aria-label="Priority reason" style="display:flex;flex-wrap:wrap;gap:8px" id="reason-filters">
+        <button type="button" class="pillf on" aria-pressed="true" data-reason="all">All reasons <span class="c">1,284</span></button>
+        <button type="button" class="pillf" aria-pressed="false" data-reason="past">Past clients <span class="c">402</span></button>
+        <button type="button" class="pillf" aria-pressed="false" data-reason="tag">Active tag <span class="c">517</span></button>
+        <button type="button" class="pillf" aria-pressed="false" data-reason="lead">Leads from last 12 months <span class="c">365</span></button>
+      </div>
+      <span style="flex:1"></span>
+      <button type="button" class="pillf"><span class="l">Sort</span>Last touch, oldest ▾</button>
+    </div>
+    <section class="card flush" aria-label="Contacts list" style="position:relative;overflow:visible">
+      <div class="bulkbar" style="border-radius:8px 8px 0 0">
+        <span class="count">48 selected</span><a href="#" onclick="return false">Select all 1,284</a>
+        <span class="sp"></span>
+        <button type="button" class="bar-btn">Add tag</button>
+        <button type="button" class="bar-btn open" id="plan-btn" aria-expanded="true" aria-controls="plan-pop">Enroll in action plan ▾</button>
+      </div>
+      <div class="pop" id="plan-pop" role="dialog" aria-label="Choose an action plan">
+        <label for="plan-q" style="display:block;font-size:12px;color:var(--ink3);margin-bottom:4px">Search your action plans</label>
+        <input id="plan-q" class="field" type="search" value="past" style="border-color:var(--blue)">
+        <div style="display:flex;flex-direction:column;gap:2px;margin:8px 0" id="plans">
+          <button type="button" class="opt" aria-pressed="true"><span><b style="font-weight:600">Past Client Nurture</b><br><span class="m">12 months · 14 steps · email, call, text</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0064E5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></button>
+          <button type="button" class="opt" aria-pressed="false"><span><b style="font-weight:500">Past Client Home Anniversary</b><br><span class="m">Yearly · 3 steps</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0064E5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></button>
+          <button type="button" class="opt" aria-pressed="false"><span><b style="font-weight:500">Past Client Quarterly Check-in</b><br><span class="m">Ongoing · 4 steps per year</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0064E5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></button>
+        </div>
+        <div style="border-top:1px solid var(--line);padding-top:10px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;color:var(--grey90)">Runs in the background. You'll get a notification when all 48 contacts are enrolled.</div>
+          <div style="display:flex;gap:8px;justify-content:flex-end"><button type="button" class="btn-ghost" id="plan-cancel">Cancel</button><a class="btn" href="#states">Enroll 48 contacts</a></div>
+        </div>
+      </div>
+      <div class="tscroll">
+        <table class="t" style="min-width:860px">
+          <thead><tr><th scope="col" class="cb"><input type="checkbox" checked aria-label="Select all on this page"></th><th scope="col">Contact</th><th scope="col">Priority reason</th><th scope="col">Last touch</th><th scope="col">Reachable by</th><th scope="col">Tags</th></tr></thead>
+          <tbody id="noplan"></tbody>
+        </table>
+      </div>
+      <div class="tfoot"><span>Showing 1–48 of 1,284</span><span style="display:flex;gap:8px"><button type="button" class="pillf" disabled>Previous</button><button type="button" class="pillf">Next</button></span></div>
+    </section>
+  </div>
+</section>
+
+<!-- ================= 6 · STATES ================= -->
+<section class="screen" id="s-states" data-screen="states" aria-label="Loading, empty and confirmation states" hidden>
+  <div class="topbar">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Contacts</a><span aria-hidden="true">/</span><a href="#overview">Database Health</a><span aria-hidden="true">/</span><b>States</b></nav>
+  </div>
+  <header class="page-head" style="display:block">
+    <h1 class="title" style="margin-top:0">Loading, empty &amp; confirmation states</h1>
+    <div class="page-sub">Supporting states for the screens above.</div>
+  </header>
+  <div class="body">
+    <div class="states">
+      <div class="state">
+        <div class="kpi-label">A · First score is calculating</div>
+        <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px">
+          <svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="40" fill="none" stroke="#E8E8E8" stroke-width="10"/><circle cx="48" cy="48" r="40" fill="none" stroke="#0064E5" stroke-width="10" stroke-linecap="round" stroke-dasharray="100 251" transform="rotate(-90 48 48)"/></svg>
+          <h2 style="margin:0;font-family:var(--serif);font-size:22px;font-weight:600">Calculating your first score</h2>
+          <p style="margin:0;font-size:13px;color:var(--ink3);max-width:320px">We're checking 8,412 contacts. This usually takes about 10 minutes. We'll notify you when it's ready, so you can keep working.</p>
+          <div style="width:100%;max-width:300px"><div class="bar mid"><span style="width:40%;background:var(--blue)"></span></div><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-top:6px"><span>3,360 of 8,412 checked</span><span>About 6 min left</span></div></div>
+        </div>
+      </div>
+
+      <div class="state">
+        <div class="kpi-label">B · Database too small to score</div>
+        <div class="card" style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:72px;height:72px;border-radius:50%;border:8px solid #E8E8E8;display:grid;place-items:center;font-family:var(--serif);font-size:24px;font-weight:600;color:var(--ink3);flex-shrink:0">—</div>
+            <div><h2 class="ct">Your score isn't meaningful yet</h2><p style="margin:4px 0 0;font-size:13px;color:var(--ink3)">Scores start at [TBD] contacts. You have 38. You can still fix the issues we found.</p></div>
+          </div>
+          <div style="border-top:1px solid var(--line);padding-top:6px">
+            <div class="help-row" style="display:flex;align-items:center;justify-content:space-between"><div><div style="font-weight:500">No email or phone</div><div class="nm-sub">6 contacts</div></div><a class="btn" href="#unreachable">Fix</a></div>
+            <div class="help-row" style="display:flex;align-items:center;justify-content:space-between"><div><div style="font-weight:500">Priority contacts with no plan</div><div class="nm-sub">4 contacts</div></div><a class="btn" href="#noplan">Fix</a></div>
+            <div class="help-row" style="display:flex;align-items:center;justify-content:space-between"><div><div style="font-weight:500">Missing first or last name</div><div class="nm-sub">2 contacts</div></div><a class="btn" href="#">Fix</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="state">
+        <div class="kpi-label">C · Archive confirmation</div>
+        <div class="scrim"><div class="dialog" role="dialog" aria-labelledby="arch-h">
+          <h2 id="arch-h">Archive 2,140 contacts?</h2>
+          <p>These contacts have no email or phone. Archived contacts leave your active database, drop out of action plans and stop counting toward your score.</p>
+          <p style="color:var(--ink3)">You can restore them anytime from Contacts › Archived.</p>
+          <div class="acts"><a class="btn-ghost" href="#unreachable">Cancel</a><button type="button" class="btn-red">Archive 2,140 contacts</button></div>
+        </div></div>
+      </div>
+
+      <div class="state">
+        <div class="kpi-label">D · Accept all confirmation</div>
+        <div class="scrim"><div class="dialog" role="dialog" aria-labelledby="acc-h">
+          <h2 id="acc-h">Accept 298 suggestions?</h2>
+          <p>This fills empty fields on <b>271 contacts</b>:</p>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:13px;background:var(--line-soft);border-radius:4px;padding:10px 12px;margin-bottom:12px" class="num"><span>Email</span><b>171</b><span>Mobile phone</span><b>94</b><span>Mailing address</span><b>33</b></div>
+          <p style="font-size:12px;color:var(--ink3);margin:0">14 conflicts are skipped. Each value is logged in the contact's history with its source.</p>
+          <div class="acts"><a class="btn-ghost" href="#suggestions">Cancel</a><button type="button" class="btn">Accept 298</button></div>
+        </div></div>
+      </div>
+
+      <div class="state">
+        <div class="kpi-label">E · Bulk action running in background</div>
+        <div class="card" style="display:flex;flex-direction:column;justify-content:flex-end;gap:12px">
+          <div class="toast-dark" role="status">
+            <div style="display:flex;justify-content:space-between;gap:12px;font-size:13px"><b style="font-weight:600">Enrolling 1,284 contacts in Past Client Nurture</b><span style="color:#C9C9C9">62%</span></div>
+            <div class="bar thin" style="background:var(--grey90);margin:10px 0 8px"><span style="width:62%;background:#59A1FA"></span></div>
+            <div style="font-size:12px;color:#C9C9C9">You can keep using CRM. We'll notify you when it's done.</div>
+          </div>
+          <div class="toast" role="status">
+            <span style="width:24px;height:24px;border-radius:50%;background:var(--green-bg);color:var(--green-ink);display:grid;place-items:center;flex-shrink:0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span>
+            <div style="flex:1;font-size:13px"><b style="font-weight:600">1,284 contacts enrolled</b><div class="nm-sub" style="margin-top:2px">Your score will update within [TBD] minutes.</div></div>
+            <a href="#overview" style="font-size:13px;white-space:nowrap">View score</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="state">
+        <div class="kpi-label">F · Rule-change annotation (P2)</div>
+        <div class="card" style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap"><h2 class="ct">Score, last 30 days</h2><span class="down" style="font-size:13px">▼ 3 <span class="vs">vs 30 days ago</span></span></div>
+          <div style="position:relative">
+            <svg width="100%" height="150" viewBox="0 0 380 150" preserveAspectRatio="none" role="img" aria-label="Score held near 66, dropped to 62 on Oct 1 when bounce tracking was added, then rose to 63"><line x1="0" y1="140" x2="380" y2="140" stroke="#DADADA"/><line x1="190" y1="8" x2="190" y2="140" stroke="#6C6C6C" stroke-dasharray="4 4"/><polyline points="0,46 25,46 50,44 75,44 100,42 125,42 150,40 175,40 190,40 191,86 215,86 240,82 265,80 290,78 315,76 340,74 380,72" fill="none" stroke="#0064E5" stroke-width="2.5" stroke-linejoin="round"/><circle cx="190" cy="86" r="4" fill="#fff" stroke="#0064E5" stroke-width="2"/></svg>
+            <div style="position:absolute;left:52%;top:96px;width:170px;max-width:46%;background:var(--ink);color:#fff;border-radius:6px;padding:8px 10px;font-size:12px;line-height:1.4"><b style="font-weight:600">Oct 1 · New rule</b><br>Bounce tracking was added. Your score dropped 4 points without any change to your data.</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink3);margin-top:48px"><span>Sep 20</span><span>Oct 1</span><span>Oct 20</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<nav class="switcher" aria-label="Mockup screens">
+  <span class="lab">Screen</span>
+  <a href="#overview">1 · Overview</a>
+  <a href="#team">2 · Team Lead</a>
+  <a href="#unreachable">3 · Unreachable</a>
+  <a href="#suggestions">4 · Suggestions</a>
+  <a href="#noplan">5 · No plan</a>
+  <a href="#states">6 · States</a>
+</nav>
+
+<script>
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const check = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>';
+
+  /* ---------- Overview ---------- */
+  const hurting = [
+    ['Priority contacts with no plan', 'act', 'Past clients, active-tagged and leads from the last 12 months', '1,284', 14, '#noplan'],
+    ['Past clients with no touch in 12 months', 'act', 'No call, text, email or note logged', '212', 8, '#noplan'],
+    ['No email or phone', 'hyg', '312 have a suggested detail from Compass data', '2,140', 6, '#unreachable'],
+    ['Duplicates (high confidence)', 'hyg', 'Opens the Duplicates page with this filter', '418', 4, '#dups'],
+    ['Bounced or undeliverable', 'hyg', 'Primary email hard-bounced or phone flagged', '356', 3, '#unreachable/bounced'],
+    ['Missing first or last name', 'hyg', 'Name completeness', '190', 1, '#overview']
+  ];
+  $('#hurting').innerHTML = hurting.map(([name, cat, sub, count, pts, href]) => `
+    <tr>
+      <td><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="nm">${esc(name)}</span><span class="pill sm ${cat === 'act' ? 't-act' : 't-hyg'}">${cat === 'act' ? 'Activity' : 'Hygiene'}</span></div><div class="nm-sub">${esc(sub)}</div></td>
+      <td class="r" style="font-weight:500">${count}</td>
+      <td><div style="display:flex;align-items:center;gap:10px"><div class="bar mid" style="flex:1"><span style="width:${Math.round(pts / 14 * 100)}%;background:var(--blue)"></span></div><b class="num" style="min-width:34px;text-align:right">+${pts}</b></div></td>
+      <td class="r"><a class="btn" href="${href}" aria-label="Fix ${esc(name)}">Fix</a></td>
+    </tr>`).join('');
+
+  const helping = [
+    ['Priority contacts on a plan', 16, 30, 'act'], ['Past clients touched this year', 12, 20, 'act'],
+    ['Not bounced or undeliverable', 10, 13, 'hyg'], ['Has first and last name', 9, 10, 'hyg'],
+    ['Has a valid email or phone', 9, 15, 'hyg'], ['Free of duplicates', 8, 12, 'hyg']
+  ];
+  $('#helping').innerHTML = helping.map(([n, p, m, c]) => `
+    <div class="help-row"><div class="help-top"><span style="font-weight:500">${n}</span><span class="num"><b>${p}</b><span style="color:var(--ink3)"> / ${m}</span></span></div>
+    <div class="bar thin"><span style="width:${Math.round(p / m * 100)}%;background:var(--${c})"></span></div></div>`).join('');
+
+  const fixes = [
+    ['Accepted 46 emails from email signatures', 'Oct 18 · 46 contacts', '+1'],
+    ['Enrolled 120 past clients in Past Client Nurture', 'Oct 15 · 120 contacts', '+2'],
+    ['Archived 85 unreachable contacts', 'Oct 12 · 85 contacts', '+1'],
+    ['Merged 64 high-confidence duplicates', 'Oct 9 · via Duplicates', '+2']
+  ];
+  $('#fixes').innerHTML = fixes.map(([w, d, p]) => `
+    <div class="log-row"><span class="log-ic">${check}</span><div><div style="font-size:13px;font-weight:500">${w}</div><div class="nm-sub">${d}</div></div><span class="up num" style="font-size:12px">${p}</span></div>`).join('');
+
+  $$('.js-tip').forEach((b) => {
+    const tip = document.getElementById(b.getAttribute('aria-controls'));
+    const show = (v) => { tip.hidden = !v; b.setAttribute('aria-expanded', String(v)); };
+    b.addEventListener('mouseenter', () => show(true));
+    b.addEventListener('mouseleave', () => show(false));
+    b.addEventListener('focus', () => show(true));
+    b.addEventListener('blur', () => show(false));
+    b.addEventListener('click', () => show(tip.hidden));
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') $$('.tip').forEach((t) => { t.hidden = true; }); });
+
+  $$('.js-refresh').forEach((b) => b.addEventListener('click', () => {
+    const txt = b.parentElement.querySelector('.fresh-txt');
+    b.classList.add('spin'); b.disabled = true; txt.innerHTML = 'Recalculating…';
+    setTimeout(() => { b.classList.remove('spin'); b.disabled = false; txt.innerHTML = 'Calculated <b>just now</b>'; }, 1800);
+  }));
+
+  /* ---------- Team ---------- */
+  const tier = (s) => s == null ? ['Too small', 't-grey'] : s < 50 ? ['At risk', 't-red'] : s < 80 ? ['Needs attention', 't-amber'] : ['Healthy', 't-green'];
+  const agents = [
+    ['Sam Patel', '22,870', 39, 22, 17, -5, 'Duplicates (high confidence)'],
+    ['Owen Price', '9,770', 44, 24, 20, -2, 'No email or phone'],
+    ['Tom Brennan', '12,640', 47, 26, 21, -3, 'No email or phone'],
+    ['Chris Novak', '6,020', 55, 30, 25, 2, 'Priority contacts with no plan'],
+    ['Alicia Gomez', '5,305', 58, 31, 27, 1, 'Priority contacts with no plan'],
+    ['Marcus Lee', '8,412', 64, 36, 28, 6, 'Priority contacts with no plan'],
+    ['Renee Duval', '3,410', 66, 35, 31, 0, 'Past clients with no touch in 12 months'],
+    ['Priya Raman', '2,980', 71, 40, 31, 2, 'Past clients with no touch in 12 months'],
+    ['Maya Chen', '4,325', 76, 39, 37, 3, 'Bounced or undeliverable'],
+    ['Dana Whitfield', '4,120', 82, 44, 38, 4, 'Bounced or undeliverable'],
+    ['Jordan Kim', '1,140', 88, 46, 42, 5, 'Missing first or last name'],
+    ['Lena Hoffman', '980', null, null, null, null, 'Fewer than [TBD] contacts']
+  ];
+  $('#agents').innerHTML = agents.map(([n, c, s, h, a, d, issue]) => {
+    const [t, cls] = tier(s);
+    const ini = n.split(' ').map((p) => p[0]).join('');
+    const trend = d == null ? '<span class="flat">—</span>' : d > 0 ? `<span class="up">▲ ${d}</span>` : d < 0 ? `<span class="down">▼ ${-d}</span>` : '<span class="flat">0</span>';
+    return `<tr>
+      <td><div style="display:flex;align-items:center;gap:10px;font-weight:500"><span class="av">${ini}</span>${n}</div></td>
+      <td class="r">${c}</td>
+      <td><div style="display:flex;align-items:center;gap:8px"><b style="font-size:15px;min-width:22px">${s == null ? '—' : s}</b><span class="pill sm ${cls}">${t}</span></div></td>
+      <td class="r">${h == null ? '—' : h + ' / 50'}</td>
+      <td class="r">${a == null ? '—' : a + ' / 50'}</td>
+      <td class="r">${trend}</td>
+      <td style="color:var(--ink2)">${issue}</td>
+      <td class="r"><a href="#overview" style="font-size:13px" aria-label="View ${n}">View →</a></td>
+    </tr>`;
+  }).join('');
+
+  /* ---------- Unreachable ---------- */
+  const noContact = [
+    ['Priya Krishnan', 'Past client · Buyer 2021', 'Mar 2021', 'Sep 2025', 'priya.krishnan@gmail.com', 'Email · From email signature, Sep 12'],
+    ['Daniel Ortega', 'Lead · Zillow', 'Jan 2024', 'Never', '(646) 555-0117', 'Mobile · From caller ID, Aug 30'],
+    ['Hannah & Leo Brooks', 'Past client · Seller 2022', 'Jun 2019', 'Jun 2023', 'hbrooks@outlook.com', 'Email · From Compass transaction, May 2022'],
+    ['Kevin Moore', 'Lead · Open house', 'Nov 2023', 'Nov 2023'],
+    ['Grace Liu', 'Sphere', 'Feb 2020', 'Never'],
+    ['Robert Fields', 'Past client · Seller 2020', 'Apr 2018', 'Jan 2022', '(917) 555-0183', 'Mobile · From Compass listing, Oct 2020'],
+    ['Sofia Marin', 'Lead · Website', 'Jul 2025', 'Jul 2025', 'sofia.marin@icloud.com', 'Email · From lead form, Jul 2025'],
+    ['Aaron Webb', 'Sphere · Vendor', 'Sep 2022', 'Never'],
+    ['Megan Ross', 'Lead · Referral', 'May 2024', 'Jun 2024'],
+    ['Luis Alvarez', 'Sphere', 'Dec 2019', 'Never']
+  ];
+  const bounced = [
+    ['Nina Shah', 'Past client · Buyer 2019', 'Email', 'Hard bounce · Oct 14'],
+    ['Peter Lindqvist', 'Sphere', 'Email', 'Hard bounce · Oct 2'],
+    ['Carmen Ruiz', 'Lead · Realtor.com', 'Mobile', 'Undeliverable SMS · Sep 29'],
+    ['Will Hart', 'Past client · Seller 2021', 'Email', 'Hard bounce · Sep 21'],
+    ['Elena Popescu', 'Lead · Website', 'Mobile', 'Undeliverable SMS · Sep 18'],
+    ['Greg Tanaka', 'Sphere', 'Email', 'Hard bounce · Sep 9']
+  ];
+  let uTab = 'none';
+  function renderUnreach() {
+    const none = uTab === 'none';
+    $$('[data-pane="none"]').forEach((el) => { el.hidden = !none; });
+    $('#u-total').textContent = none ? '2,140' : '356';
+    $('#u-foot').textContent = none ? 'Showing 1–10 of 2,140' : 'Showing 1–6 of 356';
+    $('#u-head').innerHTML = `<tr><th scope="col" class="cb"><input type="checkbox" aria-label="Select all on this page"></th><th scope="col">Contact</th>${none
+      ? '<th scope="col">Created</th><th scope="col">Last activity</th><th scope="col">Suggested detail</th>'
+      : '<th scope="col">Failed channel</th><th scope="col">Last failure</th><th scope="col">Other ways to reach</th>'}</tr>`;
+    $('#unreach').innerHTML = (none ? noContact : bounced).map((r, i) => {
+      const sel = none && i < 4;
+      const cells = none
+        ? `<td style="color:var(--ink2)">${r[2]}</td><td style="color:var(--ink2)">${r[3]}</td><td>${r[4]
+            ? `<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><div class="sug" style="padding:4px 10px"><div style="font-size:13px">${esc(r[4])}</div><div class="sug-src">${esc(r[5])}</div></div><button type="button" class="btn-sm js-accept">Accept</button><button type="button" class="btn-sm muted js-reject">Reject</button></div>`
+            : '<span style="color:var(--ink3)">No suggestion found</span>'}</td>`
+        : `<td><span class="pill sm t-red">${r[2]}</span></td><td style="color:var(--ink2)">${r[3]}</td><td style="color:var(--ink2)">${r[2] === 'Email' ? 'Phone on file' : 'Email on file'}</td>`;
+      return `<tr class="${sel ? 'sel' : ''}"><td class="cb"><input type="checkbox" class="js-row" ${sel ? 'checked' : ''} aria-label="Select ${esc(r[0])}"></td><td><div class="nm">${esc(r[0])}</div><div class="nm-sub">${esc(r[1])}</div></td>${cells}</tr>`;
+    }).join('');
+    updateCount();
+  }
+  function updateCount() {
+    const n = $$('#unreach .js-row:checked').length;
+    $('#u-count').textContent = n + ' selected';
+  }
+  $('#unreach').addEventListener('change', (e) => {
+    if (e.target.classList.contains('js-row')) { e.target.closest('tr').classList.toggle('sel', e.target.checked); updateCount(); }
+  });
+  $('#u-head').addEventListener('change', (e) => {
+    $$('#unreach .js-row').forEach((c) => { c.checked = e.target.checked; c.closest('tr').classList.toggle('sel', c.checked); });
+    updateCount();
+  });
+  $$('#s-unreachable .tab').forEach((t) => t.addEventListener('click', () => {
+    uTab = t.dataset.tab;
+    $$('#s-unreachable .tab').forEach((x) => x.setAttribute('aria-selected', String(x === t)));
+    renderUnreach();
+  }));
+
+  /* ---------- Suggestions ---------- */
+  const conflicts = [
+    ['c1', 'Marcus & Jen Alder', 'Mobile phone', '(212) 555-0142', '(212) 555-0199', 'From email signature, Oct 3'],
+    ['c2', 'Theo Grant', 'Email', 'tgrant@oldfirm.com', 'theo@grantdesign.co', 'From email signature, Sep 28']
+  ];
+  $('#conflicts').innerHTML = conflicts.map(([id, n, f, cur, sug, src]) => `
+    <fieldset class="conf"><legend>${esc(n)} · ${f}</legend>
+      <label><input type="radio" name="${id}" checked>Keep current <b style="font-weight:500">${cur}</b></label>
+      <label><input type="radio" name="${id}">Use suggested <span class="sug" style="padding:2px 8px">${sug}</span></label>
+      <span class="nm-sub">${src}</span>
+      <button type="button" class="btn-sm js-accept" style="margin-left:auto">Save choice</button>
+    </fieldset>`).join('');
+
+  const sugs = [
+    ['Priya Krishnan', 'Past client', 'Email', 'priya.krishnan@gmail.com', 'Signature', 'Email signature, Sep 12'],
+    ['Daniel Ortega', 'Lead · Zillow', 'Mobile phone', '(646) 555-0117', 'Calls', 'Inbound call, Aug 30'],
+    ['Hannah & Leo Brooks', 'Past client', 'Email', 'hbrooks@outlook.com', 'Transaction', 'Compass transaction, closed May 2022'],
+    ['Robert Fields', 'Past client', 'Mobile phone', '(917) 555-0183', 'Listing', 'Compass listing, Oct 2020'],
+    ['Robert Fields', 'Past client', 'Mailing address', '41 Orchard Ln, Montclair NJ', 'Transaction', 'Compass transaction, closed Dec 2020'],
+    ['Sofia Marin', 'Lead · Website', 'Email', 'sofia.marin@icloud.com', 'Lead form', 'Website form, Jul 2025'],
+    ['Ana Petrova', 'Sphere', 'Last name', 'Petrova', 'Signature', 'Email signature, Aug 14'],
+    ['Jamal Wright', 'Lead · Open house', 'Mobile phone', '(718) 555-0164', 'Calls', 'Inbound text, Sep 2']
+  ];
+  const kindLabel = { Signature: 'Signature', Calls: 'Call / text', Transaction: 'Transaction', Listing: 'Listing', 'Lead form': 'Lead form' };
+  function renderSugs(src) {
+    const rows = sugs.filter((r) => src === 'all' || r[4] === src);
+    $('#sugs').innerHTML = rows.length ? rows.map(([n, t, f, v, k, s]) => `
+      <tr><td class="first"><div class="nm">${esc(n)}</div><div class="nm-sub">${t}</div></td>
+      <td style="color:var(--ink2)">${f} <span style="color:var(--ink3)">(empty)</span></td>
+      <td><span class="sug">${esc(v)}</span></td>
+      <td><div style="display:flex;align-items:center;gap:8px"><span class="pill sm t-grey">${kindLabel[k]}</span><span style="color:var(--ink2)">${s}</span></div></td>
+      <td class="r last" style="white-space:nowrap"><button type="button" class="btn-sm js-accept" aria-label="Accept ${f} for ${esc(n)}">Accept</button> <button type="button" class="btn-sm muted js-reject" aria-label="Reject ${f} for ${esc(n)}">Reject</button></td></tr>`).join('')
+      : '<tr><td colspan="5" class="first" style="color:var(--ink3)">No sample rows for this source in the mockup.</td></tr>';
+  }
+  $$('#src-filters .pillf').forEach((b) => b.addEventListener('click', () => {
+    $$('#src-filters .pillf').forEach((x) => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', String(x === b)); });
+    renderSugs(b.dataset.src);
+  }));
+
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('.js-accept');
+    if (a) { a.textContent = a.textContent === 'Save choice' ? 'Saved' : 'Accepted'; a.classList.add('done'); a.disabled = true; const r = a.parentElement.querySelector('.js-reject'); if (r) r.remove(); return; }
+    const r = e.target.closest('.js-reject');
+    if (r) { const row = r.closest('tr'); row.style.opacity = '.4'; r.textContent = 'Rejected'; r.disabled = true; const acc = r.parentElement.querySelector('.js-accept'); if (acc) acc.remove(); }
+  });
+
+  /* ---------- No plan ---------- */
+  const R = { past: ['Past client', 't-act'], tag: ['Active tag', 't-blue'], lead: ['Recent lead', 't-amber'] };
+  const noplan = [
+    ['Hannah & Leo Brooks', 'Sold 2022 · Montclair', 'past', 'Jun 2023 · Email', 'Email', 'Past client, Seller'],
+    ['Robert Fields', 'Sold 2020 · Montclair', 'past', 'Jan 2022 · Call', 'Phone', 'Past client'],
+    ['Ines Carvalho', 'Bought 2021 · Hoboken', 'past', 'Mar 2024 · Text', 'Email, Phone', 'Past client, Homeowner'],
+    ['Marcus & Jen Alder', 'Bought 2019 · Jersey City', 'past', 'Aug 2024 · Note', 'Email, Phone', 'Past client'],
+    ['Nora Feld', 'Hot · Upgrading in spring', 'tag', 'Sep 2025 · Call', 'Email, Phone', 'Hot, Move-up'],
+    ['Ben Okafor', 'Warm · Relocating from Chicago', 'tag', 'Aug 2025 · Email', 'Email', 'Warm, Relocation'],
+    ['Daniel Ortega', 'Zillow · Created Jan 2025', 'lead', 'Never', 'Phone (suggested)', 'Buyer'],
+    ['Sofia Marin', 'Website · Created Jul 2025', 'lead', 'Jul 2025 · Form', 'Email', 'Buyer, First-time'],
+    ['Jamal Wright', 'Open house · Created Sep 2025', 'lead', 'Sep 2025 · Text', 'Phone', 'Open house'],
+    ['Clara Mendes', 'Warm · Sphere referral', 'tag', 'Jun 2025 · Call', 'Email, Phone', 'Warm, Referral']
+  ];
+  function renderNoplan(reason) {
+    $('#noplan').innerHTML = noplan.filter((r) => reason === 'all' || r[2] === reason).map(([n, s, k, l, reach, tags]) => `
+      <tr class="sel"><td class="cb"><input type="checkbox" checked aria-label="Select ${esc(n)}"></td>
+      <td><div class="nm">${esc(n)}</div><div class="nm-sub">${s}</div></td>
+      <td><span class="pill sm ${R[k][1]}">${R[k][0]}</span></td>
+      <td style="color:var(--ink2)">${l}</td><td style="color:var(--ink2)">${reach}</td><td style="color:var(--grey90)">${tags}</td></tr>`).join('');
+  }
+  $$('#reason-filters .pillf').forEach((b) => b.addEventListener('click', () => {
+    $$('#reason-filters .pillf').forEach((x) => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', String(x === b)); });
+    renderNoplan(b.dataset.reason);
+  }));
+  const planBtn = $('#plan-btn'), planPop = $('#plan-pop');
+  const setPlan = (open) => { planPop.hidden = !open; planBtn.setAttribute('aria-expanded', String(open)); planBtn.classList.toggle('open', open); };
+  planBtn.addEventListener('click', () => setPlan(planPop.hidden));
+  $('#plan-cancel').addEventListener('click', () => setPlan(false));
+  $$('#plans .opt').forEach((o) => o.addEventListener('click', () => $$('#plans .opt').forEach((x) => x.setAttribute('aria-pressed', String(x === o)))));
+
+  /* ---------- Routing ---------- */
+  function route() {
+    const [screen, sub] = (location.hash.replace('#', '') || 'overview').split('/');
+    if (screen === 'dups') { show('overview'); requestAnimationFrame(() => $('#dups').scrollIntoView({ behavior: 'smooth', block: 'center' })); return; }
+    show(screen);
+    if (screen === 'unreachable') {
+      uTab = sub === 'bounced' ? 'bounced' : 'none';
+      $$('#s-unreachable .tab').forEach((x) => x.setAttribute('aria-selected', String(x.dataset.tab === uTab)));
+      renderUnreach();
+    }
+  }
+  function show(name) {
+    if (!document.getElementById('s-' + name)) name = 'overview';
+    $$('.screen').forEach((s) => { s.hidden = s.dataset.screen !== name; });
+    $$('.switcher a').forEach((a) => {
+      const on = a.getAttribute('href') === '#' + name;
+      if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    window.scrollTo(0, 0);
+  }
+  $$('a[href="#"]').forEach((a) => a.addEventListener('click', (e) => e.preventDefault()));
+  renderUnreach(); renderSugs('all'); renderNoplan('all');
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+</body>
+</html>
